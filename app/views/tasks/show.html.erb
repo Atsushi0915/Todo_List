@@ -1,2 +1,24 @@
-<h1>Tasks#show</h1>
-<p>Find me in app/views/tasks/show.html.erb</p>
+<h1>タスクの詳細</h1>
+
+<div class="nav justify-content-end" >
+  <%= link_to "一覧", tasks_path, class: "nav-link" %>
+</div>
+<table class="table table-hover">
+  <tbody>
+    <%= tag.tr %>
+      <%= tag.th Task.human_attribute_name(:id) %>
+      <%= tag.td @task.id %>
+    <%= tag.tr %>
+      <%= tag.th Task.human_attribute_name(:name) %>
+      <%= tag.td @task.name %>
+    <%= tag.tr %>
+      <%= tag.th Task.human_attribute_name(:description) %>
+      <%= tag.td simple_format(h(@task.description), {}, sanitize: false, wrapper_tag: "div") %>
+    <%= tag.tr %>
+      <%= tag.th Task.human_attribute_name(:created_at) %>
+      <%= tag.td @task.created_at %>
+    <%= tag.tr %>
+      <%= tag.th Task.human_attribute_name(:updated_at) %>
+      <%= tag.td @task.updated_at %>
+  </tbody>
+</table>
