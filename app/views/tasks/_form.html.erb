@@ -1,13 +1,12 @@
 <% if task.errors.any? %>
-  <div class="alert alert-warning">
-    <ul>
-      <% task.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
+  <ul id="error_explanation">
+    <% task.errors.full_messages.each do |messages| %>
+      <li class="text-danger"><%= messages %></li>
+    <% end %>
+  </ul>
 <% end %>
-<%= form_with model: task, local: true do |f| %>
+
+<%= form_with model: task do |f| %>
   <div class="form-group">
     <%= f.label :name %>
     <%= f.text_field :name, class: "form-control", id: "task_name" %>
