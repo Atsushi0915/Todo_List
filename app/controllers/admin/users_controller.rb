@@ -1,9 +1,21 @@
 class Admin::UsersController < ApplicationController
+  def index
+    @users = User.all
+  end
+
+  def show
+    @user = User.find(params[:id])
+  end
+
+  def edit
+    @user = User.find(params[:id])
+  end
+
   def new
     @user = User.new
   end
 
-  def create_table
+  def create
     @user = User.new(user_params)
     
     if @user.save
@@ -13,13 +25,20 @@ class Admin::UsersController < ApplicationController
     end
   end
 
-  def edit
+  def update
+    @user = User.find(params[:id])
+
+    if @user.update(user_params)
+      redirect_to admin_user_url(@user), notice:"ユーザー「#{@user.name}」を更新しました。"
+    else
+      render :edit
+    end
   end
 
-  def show
-  end
-
-  def index
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to admin_users_url, notice:"ユーザー「#{@user.name}」を削除しました。"
   end
 
   private

@@ -1,2 +1,31 @@
-<h1>Admin::Users#index</h1>
-<p>Find me in app/views/admin/users/index.html.erb</p>
+<h1>ユーザー一覧</h1>
+
+<%= link_to "新規登録", new_admin_user_path, class:"btn btn-primary" %>
+
+<div class="mb-3">
+  <table class="table table-hover">
+    <thead class="thead thead-default">
+      <%= tag.tr %>
+        <%= tag.th User.human_attribute_name(:name) %>
+        <%= tag.th User.human_attribute_name(:email) %>
+        <%= tag.th User.human_attribute_name(:admin) %>
+        <%= tag.th User.human_attribute_name(:created_at) %>
+        <%= tag.th User.human_attribute_name(:updated_at) %>
+        <%= tag.th %>
+        <%= tag.th%>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <%= tag.tr %>
+          <%= tag.td link_to user.name, [:admin, user] %>
+          <%= tag.td user.email %>
+          <%= tag.td user.admin? ? "あり" : "なし" %>
+          <%= tag.td user.created_at %>
+          <%= tag.td user.updated_at %>
+          <%= tag.td button_to "編集", edit_admin_user_path(user), class: "btn btn-primary mr-3" %>
+          <%= tag.td button_to "削除", [:admin, user],  method: :delete, form: {data: { turbo_confirm: "ユーザー「」を削除します。よろしいですか？"}}, class: "btn btn-danger" %>
+          
+      <% end %>
+    </tbody>
+  </table>
+</div>
