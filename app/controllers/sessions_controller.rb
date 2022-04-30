@@ -6,11 +6,12 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(email: session_params[:email])
-    
+
     if user&.authenticate(session_params[:password])
       session[:user_id] = user.id
       redirect_to root_url, notice: "ログインしました。"
     else
+      flash.notice = "ログイン失敗しました。"
       render :new
     end
   end
