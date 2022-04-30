@@ -22,5 +22,7 @@
       <%= tag.td @task.updated_at %>
   </tbody>
 </table>
-<%= link_to "編集", edit_task_path, class:"btn btn-primary" %>
-<%= link_to "削除", @task, method: :delete, data: { confirm: "タスク「#{@task.name}」を削除します。よろしいですか？"}, class: "btn btn-danger" %>
+<div class="d-flex flex-row">
+  <%= button_to "編集", edit_task_path, class:"btn btn-primary" %>
+  <%= button_to "削除", @task, method: :delete, form: {data: { turbo_confirm: "タスク「#{@task.name}」を削除します。よろしいですか？"}}, class: "btn btn-danger" %>
+</div>

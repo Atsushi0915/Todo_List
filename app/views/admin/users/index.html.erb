@@ -22,9 +22,10 @@
           <%= tag.td user.admin? ? "あり" : "なし" %>
           <%= tag.td user.created_at %>
           <%= tag.td user.updated_at %>
-          <%= tag.td button_to "編集", edit_admin_user_path(user), class: "btn btn-primary mr-3" %>
-          <%= tag.td button_to "削除", [:admin, user],  method: :delete, form: {data: { turbo_confirm: "ユーザー「」を削除します。よろしいですか？"}}, class: "btn btn-danger" %>
-          
+          <td class="d-flex flex-row">
+            <%= button_to "編集", edit_admin_user_path(user), class: "btn btn-primary mr-3" %>
+            <%= button_to "削除", [:admin, user],  method: :delete, form: {data: { turbo_confirm: "ユーザー「」を削除します。よろしいですか？"}}, class: "btn btn-danger" %>
+          </td>
       <% end %>
     </tbody>
   </table>
